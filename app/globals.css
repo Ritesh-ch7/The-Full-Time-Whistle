@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
+/* ─── Matchday Design Tokens ──────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary */
+  --color-cannon:     #8B1A1A;   /* Deep cannon red */
+  --color-pitch:      #0C1A0C;   /* Near-black stadium green */
+  --color-gold:       #C9933A;   /* Warm stadium gold */
+
+  /* Supporting */
+  --color-chalk:      #F0EDE6;   /* Off-white chalk */
+  --color-tunnel:     #0A0A0A;   /* Pure near-black */
+  --color-concrete:   #1A1A1A;   /* Dark concrete */
+  --color-amber:      #E8A020;   /* Floodlight glow */
+
+  /* Text */
+  --color-text-primary:    #F0EDE6;
+  --color-text-secondary:  #A89880;
+  --color-text-dark:       #1A1210;
+
+  /* Accents */
+  --color-accent-red:      #B22222;
+  --color-accent-gold:     #D4A843;
+  --color-grass-line:      #1E3A1E;
 }
 
+/* ─── Tailwind v4 Theme Tokens ────────────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colours */
+  --color-cannon:          var(--color-cannon);
+  --color-pitch:           var(--color-pitch);
+  --color-gold:            var(--color-gold);
+  --color-chalk:           var(--color-chalk);
+  --color-tunnel:          var(--color-tunnel);
+  --color-concrete:        var(--color-concrete);
+  --color-amber:           var(--color-amber);
+  --color-accent-red:      var(--color-accent-red);
+  --color-accent-gold:     var(--color-accent-gold);
+  --color-grass-line:      var(--color-grass-line);
+  --color-text-primary:    var(--color-text-primary);
+  --color-text-secondary:  var(--color-text-secondary);
+  --color-text-dark:       var(--color-text-dark);
+
+  /* Fonts */
+  --font-display: var(--font-barlow-condensed), 'Bebas Neue', sans-serif;
+  --font-body:    var(--font-dm-sans), system-ui, sans-serif;
+  --font-mono:    var(--font-jetbrains-mono), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base Styles ─────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-pitch);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* ─── Utility: Tunnel vignette ────────────────────────────────────────────── */
+.vignette {
+  box-shadow: inset 80px 0 120px rgba(0,0,0,0.8),
+              inset -80px 0 120px rgba(0,0,0,0.8);
+}
+
+

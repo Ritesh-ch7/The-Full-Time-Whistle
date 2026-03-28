@@ -1,0 +1,37 @@
+name: Sync LinkedIn Career Data
+
+on:
+  # Run every Monday at 02:00 UTC
+  schedule:
+    - cron: "0 2 * * 1"
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  sync:
+    name: Fetch & commit career.json
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run LinkedIn sync script
+        env:
+          PROXYCURL_API_KEY: ${{ secrets.PROXYCURL_API_KEY }}
+        run: node scripts/sync-linkedin.mjs
+
+      - name: Commit updated career.json (if changed)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/career.json
+          # Only commit if there are actual changes
+          git diff --cached --quiet || git commit -m "chore: sync career data from LinkedIn [skip ci]"
+          git push
+

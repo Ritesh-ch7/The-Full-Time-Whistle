@@ -1,0 +1,63 @@
+[
+  {
+    "id": "edu-01",
+    "type": "education",
+    "institution": "University College of Engineering, Osmania University",
+    "role": "Bachelor of Engineering (B.E.), Computer Science",
+    "period": "2020 – 2024",
+    "season": "Academy",
+    "badge": "GRASSROOTS · 2020",
+    "description": "Built core fundamentals in computer science, software engineering, and problem solving while preparing for industry-level projects and leadership opportunities."
+  },
+  {
+    "id": "exp-01",
+    "type": "experience",
+    "institution": "IEEE Computer Society",
+    "role": "Organizer",
+    "period": "Sep 2022 – Jul 2023 · 11 mos",
+    "season": "Academy",
+    "badge": "Youth System · 2022",
+    "description": "Organized technical events and student activities in Hyderabad, coordinating teams and creating platforms for peer learning and community participation."
+  },
+  {
+    "id": "exp-02",
+    "type": "experience",
+    "institution": "IEEE Computer Society",
+    "role": "Vice Chairperson",
+    "period": "Jul 2023 – Jul 2024 · 1 yr 1 mo",
+    "season": "Academy",
+    "badge": "Youth Elite · 2023",
+    "description": "Led chapter initiatives, guided organizers, and helped drive strategic event planning and execution across the student technology community in Hyderabad."
+  },
+  {
+    "id": "exp-03",
+    "type": "experience",
+    "institution": "OSI Digital",
+    "role": "AI/ML Intern",
+    "period": "Jan 2024 – Apr 2024 · 4 mos",
+    "season": "First Team",
+    "badge": "First Professional Contract · 2024",
+    "description": "Worked on-site in Hyderabad as an AI/ML intern, contributing to practical model and data tasks while learning enterprise engineering workflows."
+  },
+  {
+    "id": "exp-04",
+    "type": "experience",
+    "institution": "OSI Digital",
+    "role": "Project Associate Trainee",
+    "period": "Jun 2024 – Nov 2024 · 6 mos",
+    "season": "First Team",
+    "badge": "Second Professional Contract · 2024",
+    "description": "Transitioned to a full-time on-site trainee role, supporting delivery efforts and strengthening execution across project and product tasks."
+  },
+  {
+    "id": "exp-05",
+    "type": "experience",
+    "institution": "OSI Digital",
+    "role": "Associate Software Engineer",
+    "period": "Dec 2024 – Present · 1 yr 4 mos",
+    "season": "First Team",
+    "badge": "Promoted",
+    "description": "Currently working full-time on-site in Hyderabad, building software solutions and contributing across development, delivery, and continuous improvement cycles."
+  }
+]
+
