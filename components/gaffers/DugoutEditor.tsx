@@ -381,6 +381,7 @@ export default function DugoutEditor({
   const [isDeletingPageId, setIsDeletingPageId] = useState<string | null>(null);
   const [pendingDeletePageId, setPendingDeletePageId] = useState<string | null>(null);
   const [pickerTargetBlockId, setPickerTargetBlockId] = useState<string | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const inputRefs = useRef<Record<string, HTMLElement | null>>({});
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -433,6 +434,25 @@ export default function DugoutEditor({
       if (saveTimer.current) clearTimeout(saveTimer.current);
     };
   }, []);
+
+  useEffect(() => {
+    if (!isExpanded) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    document.body.style.overflow = "hidden";
+
+    const handleEscape = (event: globalThis.KeyboardEvent) => {
+      if (event.key === "Escape") setIsExpanded(false);
+    };
+
+    window.addEventListener("keydown", handleEscape);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, [isExpanded]);
 
   // ── Focus a block after render ─────────────────────────────────────────────
   const focusBlock = useCallback((id: string, atEnd = true) => {
@@ -889,7 +909,48 @@ export default function DugoutEditor({
   if (!activePage) return null;
 
   return (
-    <div className="w-full grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-4 lg:gap-6">
+    <>
+      {isExpanded && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[125]"
+          style={{ background: "rgba(6,6,6,0.72)" }}
+          onClick={() => setIsExpanded(false)}
+        />
+      )}
+
+      <div
+        className={isExpanded ? "fixed inset-0 z-[126] flex items-center justify-center p-3 sm:p-6" : "w-full"}
+      >
+        <div
+          className={
+            isExpanded
+              ? "w-[95vw] h-[92vh] sm:w-[92vw] sm:h-[93vh] lg:w-[80vw] lg:h-[80vh] rounded-xl p-4 sm:p-5 overflow-hidden"
+              : "w-full"
+          }
+          style={
+            isExpanded
+              ? {
+                  background: "rgba(8,8,8,0.96)",
+                  border: "1px solid rgba(201,147,58,0.3)",
+                  boxShadow: "0 20px 56px rgba(0,0,0,0.45)",
+                }
+              : undefined
+          }
+          onClick={(event) => {
+            if (isExpanded) event.stopPropagation();
+          }}
+        >
+          <div
+            className={
+              isExpanded
+                ? "h-full overflow-y-auto pr-1"
+                : "w-full"
+            }
+          >
+            <div className="w-full grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)] gap-4 lg:gap-6">
       {/* Pages sidebar */}
       <aside
         className="rounded-lg p-3 lg:p-4"
@@ -915,7 +976,13 @@ export default function DugoutEditor({
           </button>
         </div>
 
-        <div className="max-h-[62vh] overflow-y-auto pr-1">
+        <div
+          className={
+            isExpanded
+              ? "max-h-[calc(92vh-8rem)] sm:max-h-[calc(93vh-8rem)] lg:max-h-[calc(80vh-8rem)] overflow-y-auto pr-1"
+              : "max-h-[62vh] overflow-y-auto pr-1"
+          }
+        >
           <div className="flex flex-col gap-1.5">
             {pages.map((page) => {
               const isActive = page.id === activePageId;
@@ -980,24 +1047,76 @@ export default function DugoutEditor({
 
       {/* Main page */}
       <div className="min-w-0">
-        <div className="flex items-center justify-between gap-3 mb-3">
-          <input
-            value={activePage.title}
-            onChange={handleTitleChange}
-            placeholder="Untitled page"
-            className="bg-transparent border-none outline-none font-[var(--font-display)] text-3xl sm:text-4xl font-bold text-[var(--color-chalk)] w-full"
-          />
-          <button
-            onClick={handleAddImageBlock}
-            className="shrink-0 text-[10px] px-3 py-2 rounded-md font-[var(--font-mono)] tracking-[0.16em] uppercase"
-            style={{
-              color: "#F0EDE6",
-              border: "1px solid rgba(201,147,58,0.35)",
-              background: "rgba(14,14,14,0.65)",
-            }}
-          >
-            Add image
-          </button>
+        <div
+          className="mb-3 rounded-lg p-3 sm:p-4"
+          style={{
+            background: "rgba(10,10,10,0.45)",
+            border: "1px solid rgba(201,147,58,0.12)",
+          }}
+        >
+          <div className="flex items-center justify-between gap-3">
+            <input
+              value={activePage.title}
+              onChange={handleTitleChange}
+              placeholder="Untitled page"
+              className="bg-transparent border-none outline-none font-[var(--font-display)] text-3xl sm:text-4xl font-bold text-[var(--color-chalk)] w-full"
+            />
+
+            <div className="shrink-0 flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setIsExpanded((prev) => !prev)}
+                className="h-9 w-9 rounded-md flex items-center justify-center transition-colors"
+                style={{
+                  color: "#F0EDE6",
+                  border: "1px solid rgba(201,147,58,0.35)",
+                  background: "rgba(14,14,14,0.65)",
+                }}
+                aria-label={isExpanded ? "Collapse dugout editor" : "Expand dugout editor"}
+                title={isExpanded ? "Collapse" : "Expand"}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  {isExpanded ? (
+                    <>
+                      <polyline points="9 3 3 3 3 9" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <polyline points="9 21 3 21 3 15" />
+                      <polyline points="15 21 21 21 21 15" />
+                    </>
+                  ) : (
+                    <>
+                      <polyline points="10 10 3 10 3 3" />
+                      <polyline points="14 10 21 10 21 3" />
+                      <polyline points="10 14 3 14 3 21" />
+                      <polyline points="14 14 21 14 21 21" />
+                    </>
+                  )}
+                </svg>
+              </button>
+
+              <button
+                onClick={handleAddImageBlock}
+                className="shrink-0 text-[10px] px-3 py-2 rounded-md font-[var(--font-mono)] tracking-[0.16em] uppercase"
+                style={{
+                  color: "#F0EDE6",
+                  border: "1px solid rgba(201,147,58,0.35)",
+                  background: "rgba(14,14,14,0.65)",
+                }}
+              >
+                Add image
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Save indicator */}
@@ -1020,7 +1139,11 @@ export default function DugoutEditor({
 
         {/* Block list */}
         <div
-          className="min-h-[60vh] rounded-lg p-6 sm:p-8"
+          className={
+            isExpanded
+              ? "min-h-[calc(92vh-15rem)] sm:min-h-[calc(93vh-15rem)] lg:min-h-[calc(80vh-15rem)] rounded-lg p-6 sm:p-8"
+              : "min-h-[60vh] rounded-lg p-6 sm:p-8"
+          }
           style={{ background: "rgba(10,10,10,0.45)", border: "1px solid rgba(201,147,58,0.12)" }}
           onClick={() => focusLastEditableBlock()}
         >
@@ -1088,6 +1211,10 @@ export default function DugoutEditor({
         <p className="mt-3 text-center font-[var(--font-mono)] text-[10px] tracking-[0.15em] text-[var(--color-text-secondary)] opacity-40 uppercase">
           Type <span className="text-[var(--color-gold)] opacity-80">/</span> for block types · Paste images directly · Enter for new line
         </p>
+      </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -1172,6 +1299,6 @@ export default function DugoutEditor({
           pointer-events: none;
         }
       `}</style>
-    </div>
+    </>
   );
 }
