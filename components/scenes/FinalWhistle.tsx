@@ -43,7 +43,7 @@ export default function FinalWhistle() {
           variants={fadeUp}
           custom={0}
         >
-          Post-Match
+          FULLTIME
         </motion.p>
 
         {/* Scoreboard */}
