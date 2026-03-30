@@ -1,18 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { projects } from "@/data/projects";
 import ProjectCard from "@/components/ui/ProjectCard";
 
 const ALL_TYPES = ["All", "ML", "Web", "Python", "TypeScript"];
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay: i * 0.12, ease: "easeOut" },
+    transition: { duration: 0.7, delay: i * 0.12, ease: "easeOut" as const },
   }),
 };
 
@@ -26,7 +26,7 @@ export default function Kickoff() {
 
   return (
     <section
-      id="kickoff"
+      id="halftime"
       className="relative min-h-screen py-24 px-6 overflow-hidden"
     >
       {/* Dramatic light-flood entrance from tunnel darkness */}
@@ -56,7 +56,7 @@ export default function Kickoff() {
           transition={{ duration: 0.7 }}
         >
           <p className="font-[var(--font-display)] text-xs tracking-[0.4em] text-[var(--color-gold)] uppercase mb-4">
-            Kickoff
+            Halftime
           </p>
           <h2 className="font-[var(--font-display)] text-5xl sm:text-6xl font-bold text-[var(--color-chalk)] uppercase tracking-tight leading-none">
             The Projects

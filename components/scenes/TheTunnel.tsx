@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 const paragraphs = [
   "I build things that learn.",
@@ -12,19 +12,19 @@ const paragraphs = [
 
 const quote = "The best players make the people around them better.";
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.75, delay: i * 0.12, ease: "easeOut" },
+    transition: { duration: 0.75, delay: i * 0.12, ease: "easeOut" as const },
   }),
 };
 
 export default function TheTunnel() {
   return (
     <section
-      id="the-tunnel"
+      id="dressing-room"
       className="relative min-h-screen flex items-center justify-center bg-[var(--color-tunnel)] overflow-hidden py-24 px-6"
     >
       {/* Tunnel vignette — left and right walls */}
@@ -56,7 +56,7 @@ export default function TheTunnel() {
           variants={fadeUp}
           custom={0}
         >
-          The Tunnel
+          The Dressing Room
         </motion.p>
 
         {/* Prose paragraphs */}

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
-import Image from "next/image";
 import { motion, type Variants } from "framer-motion";
 
 // ─── Seeded particle config (generated once on mount, avoids hydration mismatch)
@@ -104,16 +103,21 @@ export default function MatchdayCard() {
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[var(--color-pitch)]"
     >
-      {/* ── Full-section background image — blurred, darkened, cinematic ── */}
+      {/* ── Full-section background video — blurred, darkened, cinematic ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <Image
-          src="/image copy.png"
-          alt=""
-          fill
-          className="object-cover object-center"
+        <video
+          className="w-full h-full object-cover object-center"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/image copy.png"
           style={{ opacity: 0.88, filter: "blur(2px)", transform: "scale(1.05)" }}
-          priority
-        />
+          aria-hidden="true"
+        >
+          <source src="/stadium.mp4" type="video/mp4" />
+        </video>
       </div>
 
       {/* ── Gradient overlay — dark at top & bottom, slightly lifted in centre ── */}
