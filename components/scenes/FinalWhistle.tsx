@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 const links = [
   { icon: "📧", label: "your@email.com", href: "mailto:your@email.com" },
@@ -9,19 +9,19 @@ const links = [
   { icon: "🐦", label: "@yourhandle", href: "https://twitter.com/yourhandle" },
 ];
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, delay: i * 0.1, ease: "easeOut" },
+    transition: { duration: 0.7, delay: i * 0.1, ease: "easeOut" as const },
   }),
 };
 
 export default function FinalWhistle() {
   return (
     <section
-      id="final-whistle"
+      id="post-match"
       className="relative min-h-screen flex flex-col items-center justify-center bg-[var(--color-pitch)] px-6 py-24 overflow-hidden"
     >
       {/* Floodlight glow from top */}
@@ -43,7 +43,7 @@ export default function FinalWhistle() {
           variants={fadeUp}
           custom={0}
         >
-          Full Time
+          Post-Match
         </motion.p>
 
         {/* Scoreboard */}

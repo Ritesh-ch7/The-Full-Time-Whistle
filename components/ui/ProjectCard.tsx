@@ -28,15 +28,12 @@ export default function ProjectCard({ project }: { project: Project }) {
         Project {project.id}
       </p>
 
-      {/* Name vs Problem */}
-      <div className="flex items-baseline gap-3 flex-wrap mb-4">
+      {/* Name + focus */}
+      <div className="mb-4">
         <h3 className="font-[var(--font-display)] text-2xl sm:text-3xl font-bold text-[var(--color-chalk)] uppercase tracking-tight">
           {project.name}
         </h3>
-        <span className="font-[var(--font-display)] text-sm tracking-[0.3em] text-[var(--color-gold)] uppercase">
-          vs
-        </span>
-        <h4 className="font-[var(--font-display)] text-xl sm:text-2xl font-bold text-[var(--color-text-secondary)] uppercase tracking-tight">
+        <h4 className="font-[var(--font-display)] text-base sm:text-lg font-semibold text-[var(--color-text-secondary)] uppercase tracking-[0.12em] mt-1">
           {project.problem}
         </h4>
       </div>

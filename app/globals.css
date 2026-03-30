@@ -66,4 +66,127 @@ body {
               inset -80px 0 120px rgba(0,0,0,0.8);
 }
 
+/* ─── Press Box: Article prose ────────────────────────────────────────────── */
+.press-prose {
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+/* h1 & h2 — big display headings */
+.press-prose h1,
+.press-prose h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--color-chalk);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  margin-top: 2.75rem;
+  margin-bottom: 0.875rem;
+}
+.press-prose h1 { font-size: 2.5rem; }
+.press-prose h2 { font-size: 2rem; }
+
+/* h3 & h4 — section headings, body font so they contrast with h1/h2 */
+.press-prose h3,
+.press-prose h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--color-chalk);
+  line-height: 1.35;
+  margin-top: 2rem;
+  margin-bottom: 0.625rem;
+}
+.press-prose h3 { font-size: 1.35rem; }
+.press-prose h4 { font-size: 1.125rem; color: var(--color-gold); }
+
+.press-prose p {
+  margin-bottom: 1.4rem;
+  color: var(--color-text-primary);
+}
+
+.press-prose strong { color: var(--color-chalk); font-weight: 600; }
+.press-prose em     { color: var(--color-text-secondary); }
+
+.press-prose a {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s;
+}
+.press-prose a:hover { opacity: 0.75; }
+
+.press-prose blockquote {
+  border-left: 3px solid var(--color-gold);
+  padding: 0.5rem 0 0.5rem 1.25rem;
+  margin: 2rem 0;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.press-prose ul, .press-prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.4rem;
+}
+.press-prose ul { list-style-type: disc; }
+.press-prose ol { list-style-type: decimal; }
+.press-prose li { margin-bottom: 0.4rem; }
+
+.press-prose pre {
+  background: var(--color-tunnel);
+  border: 1px solid rgba(201,147,58,0.15);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--color-chalk);
+}
+.press-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.84em;
+  background: rgba(201,147,58,0.1);
+  color: var(--color-gold);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+}
+.press-prose pre code {
+  background: transparent;
+  color: var(--color-chalk);
+  padding: 0;
+  font-size: inherit;
+}
+
+.press-prose figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+.press-prose figure img {
+  max-width: 100%;
+  border-radius: 4px;
+  border: 1px solid rgba(201,147,58,0.12);
+}
+.press-prose figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.6rem;
+  letter-spacing: 0.03em;
+}
+
+.press-prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.press-prose hr {
+  border: none;
+  border-top: 1px solid rgba(201,147,58,0.2);
+  margin: 2.5rem 0;
+}
+
 
