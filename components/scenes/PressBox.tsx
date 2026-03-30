@@ -87,7 +87,7 @@ export default async function PressBox() {
         {/* Section header */}
         <div className="mb-14">
           <p className="font-[var(--font-mono)] text-[11px] tracking-[0.4em] uppercase text-[var(--color-gold)] mb-4">
-            Scene 07 — The Press Box
+            Post-Match — The Press Box
           </p>
           <h2 className="font-[var(--font-display)] text-5xl sm:text-7xl font-bold text-[var(--color-chalk)] tracking-tight leading-none mb-4">
             THE PRESS BOX

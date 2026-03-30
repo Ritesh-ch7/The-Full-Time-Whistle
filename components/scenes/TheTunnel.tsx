@@ -49,7 +49,7 @@ export default function TheTunnel() {
       <div className="relative z-10 w-full max-w-[600px]">
         {/* Section label */}
         <motion.p
-          className="font-[var(--font-display)] text-xs tracking-[0.4em] text-[var(--color-gold)] uppercase mb-10"
+          className="font-[var(--font-display)] text-base sm:text-xl font-bold tracking-[0.4em] text-[var(--color-gold)] uppercase mb-10"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
